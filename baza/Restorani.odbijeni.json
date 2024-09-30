@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "664d27a2a5f3c8b388af763f"
+  },
+  "kor_ime": "pekisaaa",
+  "mejl": "pekisoni@mejl.com"
+},
+{
+  "_id": {
+    "$oid": "664dcf5d375882b889063fb3"
+  },
+  "kor_ime": "pekisaa",
+  "mejl": "pekia@mejl.com",
+  "__v": 0
+}]

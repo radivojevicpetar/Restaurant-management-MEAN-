@@ -1,0 +1,150 @@
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li><a routerLink="/gost">Profil</a></li>
+            <li><a routerLink="/restorani">Restorani</a></li>
+            <li><a routerLink="/rezervacijeG">Rezervacije</a></li>  
+            <li><a routerLink="/dostaveG">Dostava</a></li>
+          </ul>
+    </div>
+    <div class="card2">
+        <div>
+            <h4>Restoran</h4>
+                <table>
+                    <tr>
+                        <th>Naziv </th>
+                        <th>Tip</th>
+                        <th>Adresa</th>
+                        <th>Opis</th>
+                        <th>Kontakt</th>
+                        <th>Radno vreme</th>
+                        <th>Konobari</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <output type="text">{{restoran.naziv}}</output>
+                        </td>
+                        <td>
+                            <output type="text">{{restoran.tip}}</output>
+                        </td>
+                        <td>
+                            <output type="text">{{restoran.adresa}}</output>
+                        </td>
+                        <td>
+                            <output type="text">{{restoran.opis}}</output>
+                        </td>
+                        <td>
+                            <output type="number">{{restoran.kontakt}}</output>
+                        </td>
+                        <td *ngIf="restoran.radno_vreme!=undefined">
+                            <ul  >
+                                <li>
+                                    Ponedeljak: {{restoran.radno_vreme[0].pocetno_vreme }} - {{restoran.radno_vreme[0].krajnje_vreme }}
+                                </li>
+                                <li>
+                                    Utorak: {{restoran.radno_vreme[1].pocetno_vreme }} - {{restoran.radno_vreme[1].krajnje_vreme}}
+                                </li>
+                                <li>
+                                    Sreda: {{restoran.radno_vreme[2].pocetno_vreme}} - {{restoran.radno_vreme[2].krajnje_vreme }}
+                                </li>
+                                <li>
+                                    Cetvrtak: {{restoran.radno_vreme[3].pocetno_vreme}} - {{restoran.radno_vreme[3].krajnje_vreme}}
+                                </li>
+                                <li>
+                                    Petak: {{restoran.radno_vreme[4].pocetno_vreme }} - {{restoran.radno_vreme[4].krajnje_vreme}}
+                                </li>
+                                <li>
+                                    Subota: {{restoran.radno_vreme[5].pocetno_vreme }} - {{restoran.radno_vreme[5].krajnje_vreme }}
+                                </li>
+                                <li>
+                                    Nedelja: {{restoran.radno_vreme[6].pocetno_vreme }} - {{restoran.radno_vreme[6].krajnje_vreme }}
+                                </li>
+                            </ul>                       
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let konobar of getKonobariForRestoran(restoran)">
+                                    {{konobar.ime}} {{konobar.prezime}} 
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div><h4>Rezervisi sto</h4>
+            <table>
+                <tr>
+                    <th>Datum i vreme </th>
+                    <th>Broj ljudi</th>
+                    <th>Dodatni zahtevi</th>   
+                </tr>        
+            <tr>
+            <td>
+                <input type="datetime-local" [(ngModel)]="datumVreme" >
+            </td>
+            <td>
+                <input type="number" [(ngModel)]="brojLjudi" >
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="dodatniZahtevi" >
+            </td>
+            </tr>
+            <button (click)="rezervisi()"> Rezervisi</button>
+            </table>
+            {{message}}
+        </div>
+        <div><h4>Naruci hranu</h4>
+        <table>
+            <tr>
+                <th>Slika </th>
+                <th>Naziv</th>
+                <th>Cena</th>
+                <th>Sastojci</th>
+                <th>Izaberi Kolicinu</th>
+            </tr>
+            <tr *ngFor="let jelo of restoran.jelovnik">
+                <div class="sl"><td><img [src]="jelo.img" height="70px !important" 
+                width="70px !important">
+                </td> </div>
+                <td>{{jelo.naziv}}</td>
+                <td>{{jelo.cena}}</td>
+                <td>{{jelo.sastojci}}</td>
+                <td>
+                    <input type="number" [(ngModel)]="jelo.kolicina"  >
+                </td>
+                <td><button (click)="dodajKorpa(jelo)"> Dodaj u korpu</button></td>
+            </tr>
+        </table>
+        </div>
+        <br>
+        <div *ngIf="korpa"><h4>Trenutna korpa</h4>
+            <table >
+                <tr>
+                    <th>Slika </th>
+                    <th>Naziv</th>
+                    <th>Cena</th>
+                    <th>Sastojci</th>
+                    <th>Kolicina</th>
+                </tr>
+                <tr *ngFor="let jelo of korpa.narudzbina">
+                    <div class="sl"><td><img [src]="jelo.img" height="70px !important" 
+                    width="70px !important">
+                    </td> </div>
+                    <td>{{jelo.naziv}}</td>
+                    <td>{{jelo.cena}}</td>
+                    <td>{{jelo.sastojci}}</td>
+                    <td>
+                        {{jelo.kolicina}} >
+                    </td>
+                    <td><button (click)="obrisiJelo(jelo)">Obrisi</button></td>
+                </tr>
+                <tr><button (click)="posaljiDostavu(korpa)">Naruci</button></tr>
+            </table>
+            </div>
+    </div>
+    
+    <div class="footer">
+        <br>
+        <button (click)="logout()">Odjavi se</button>
+    </div>
+</body>

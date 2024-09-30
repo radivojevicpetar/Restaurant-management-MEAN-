@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "6670ba503613391ddd935be4"
+  },
+  "restoran": "Konoba",
+  "kuhinja": [
+    {
+      "idObj": 1,
+      "xkoor": 500,
+      "ykoor": 400,
+      "sirina": 300,
+      "visina": 200
+    }
+  ],
+  "toalet": [
+    {
+      "idObj": 1,
+      "xkoor": 100,
+      "ykoor": 400,
+      "sirina": 300,
+      "visina": 200
+    }
+  ],
+  "stolovi": [
+    {
+      "idObj": 1,
+      "xkoor": 350,
+      "ykoor": 100,
+      "radius": 100,
+      "visina": 250,
+      "status": "slobodan",
+      "brojLjudi": 3
+    },
+    {
+      "idObj": 2,
+      "xkoor": 100,
+      "ykoor": 100,
+      "radius": 100,
+      "visina": 300,
+      "status": "slobodan",
+      "brojLjudi": 4
+    },
+    {
+      "idObj": 3,
+      "xkoor": 600,
+      "ykoor": 100,
+      "radius": 100,
+      "visina": 300,
+      "status": "slobodan",
+      "brojLjudi": 5
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a6d872bd76bd661778e50"
+  },
+  "restoran": "go sushi",
+  "kuhinja": [
+    {
+      "idObj": 1,
+      "xkoor": 700,
+      "ykoor": 700,
+      "sirina": 300,
+      "visina": 200
+    }
+  ],
+  "toalet": [
+    {
+      "idObj": 1,
+      "xkoor": 300,
+      "ykoor": 700,
+      "sirina": 300,
+      "visina": 200
+    }
+  ],
+  "stolovi": [
+    {
+      "idObj": 1,
+      "xkoor": 500,
+      "ykoor": 250,
+      "radius": 100,
+      "visina": 250,
+      "status": "slobodan",
+      "brojLjudi": 3
+    },
+    {
+      "idObj": 2,
+      "xkoor": 300,
+      "ykoor": 250,
+      "radius": 250,
+      "visina": 300,
+      "status": "slobodan",
+      "brojLjudi": 4
+    },
+    {
+      "idObj": 3,
+      "xkoor": 700,
+      "ykoor": 250,
+      "radius": 300,
+      "visina": 300,
+      "status": "slobodan",
+      "brojLjudi": 5
+    }
+  ],
+  "__v": 0
+}]

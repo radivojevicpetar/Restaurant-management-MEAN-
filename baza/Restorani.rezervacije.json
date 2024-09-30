@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "6670df8ad8564ff44652f9a9"
+  },
+  "idRez": 1,
+  "gost": "peki",
+  "restoran": "Konoba",
+  "datumVreme": "2024-06-25 07:14:00",
+  "brojLjudi": 4,
+  "dodatniZahtevi": "sdsd",
+  "status": "prihvacena",
+  "__v": 0,
+  "datumVremeOdlaska": "2024-06-25 10:14:00",
+  "konobar": "makica",
+  "idStola": 2
+},
+{
+  "_id": {
+    "$oid": "6670dfa5d8564ff44652f9b7"
+  },
+  "idRez": 2,
+  "gost": "peki",
+  "restoran": "Konoba",
+  "datumVreme": "2024-06-25 08:15:00",
+  "brojLjudi": 4,
+  "dodatniZahtevi": "sdsd",
+  "status": "poslata",
+  "__v": 0,
+  "datumVremeOdlaska": "2024-06-18 11:15:00",
+  "konobar": "makica"
+},
+{
+  "_id": {
+    "$oid": "668938daef9c48f22ac376ea"
+  },
+  "idRez": 3,
+  "gost": "jeca",
+  "restoran": "Konoba",
+  "adresa": "Zaplanjska",
+  "datumVreme": "2024-07-15 14:30:00",
+  "brojLjudi": 2,
+  "dodatniZahtevi": "sushi",
+  "status": "pojavio",
+  "__v": 0,
+  "datumVremeOdlaska": "2024-07-15 17:30:00",
+  "idStola": 1,
+  "konobar": "makica"
+}]

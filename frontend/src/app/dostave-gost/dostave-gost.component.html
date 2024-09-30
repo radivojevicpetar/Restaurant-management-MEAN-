@@ -1,0 +1,48 @@
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li><a routerLink="/konobar">Profil</a></li>
+            <li><a routerLink="/restorani">Restorani</a></li>
+            <li><a routerLink="/rezervacijeG">Rezervacije</a></li>
+            <li><a routerLink="/dostaveG">Dostave</a></li>  
+          </ul>
+    </div>
+    <div class="card2">
+    <br>
+    <div><h4>Aktuelne dostave</h4>
+        <table>
+            <tr>
+                <th>Restoran </th>
+                <th>Procenjeno vreme</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let dostava of sveAktuelneDostave">
+                <td>{{dostava.restoran}}</td>
+                <td>{{dostava.vremeDostave}}</td>
+                <td>{{dostava.status}}</td>
+            </tr>
+        </table>
+        </div>
+    <br>
+    <div><h4>Zavrsene dostave</h4>
+        <table>
+            <tr>
+                <th>Restoran </th>
+                <th>Procenjeno vreme</th>
+                <th>Racun</th>
+            </tr>
+            <tr *ngFor="let dostava of zavrsenePrihvacene">
+                <td>{{dostava.restoran}}</td>
+                <td>{{dostava.vremeDostave}}</td>
+                <td>{{dostava.iznosRacuna}}</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    </div>
+    <div class="footer">
+        <a routerLink="/promenaLozinke">Promeni lozinku</a>
+        <br>
+        <button (click)="logout()">Odjavi se</button>
+    </div>
+    </body>
