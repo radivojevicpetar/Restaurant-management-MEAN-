@@ -1,0 +1,66 @@
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li><a routerLink="/gost">Profil</a></li>
+            <li><a routerLink="/restorani">Restorani</a></li>
+            <li><a routerLink="/rezervacijeG">Rezervacije</a></li>  
+            <li><a routerLink="/dostaveG">Dostava</a></li>
+          </ul>
+    </div>
+    <div class="card2">
+        <div>
+            <h4>Aktuelne rezervacije</h4>
+                <table>
+                    <tr>
+                        <th>Restoran </th>
+                        <th>Vreme</th>
+                        <th>Adresa</th>
+                    </tr>
+                    <tr *ngFor="let rezervacija of aktuelneRezervacije">
+                        <td>{{rezervacija.gost}}</td>
+                        <td>{{rezervacija.datumVreme}}</td>
+                        <td>{{rezervacija.adresa}}</td>
+                        <td><button (click)="otkaziRezervaciju(rezervacija)">Otkazi rezervaciju</button></td>
+                    </tr>
+                </table>
+        </div>
+        <div>
+            <h4>Arhiva rezervacija</h4>
+                <table>
+                    <tr>
+                        <th>Restoran </th>
+                        <th>Vreme</th>
+                        <th>Adresa</th>
+                        <th>Komentar</th>
+                        <th>Ocena</th>
+                    </tr>
+                    <tr *ngFor="let rezervacija of zavrseneRezervacije">
+                        <td>{{rezervacija.gost}}</td>
+                        <td>{{rezervacija.datumVreme}}</td>
+                        <td>{{rezervacija.adresa}}</td>
+                        <td *ngIf="!rezervacija.ocena&&!oceni"><button (click)="oceniRez()">Oceni</button></td>
+                        <td>
+                            <output type="text" *ngIf="rezervacija.komentar">{{rezervacija.komentar}}</output>
+                            <input type="text" [(ngModel)]="komentar" *ngIf="!rezervacija.komentar&&oceni">
+                        </td>
+                        <td>
+                            <output type="number" *ngIf="rezervacija.ocena">{{rezervacija.ocena}}</output>
+                            <div class="star-rating" *ngIf="!rezervacija.ocena&&oceni">
+                                <span class="star" (click)="setRating(1)" [class.full]="reservationRating >= 1">&#9733;</span>
+                                <span class="star" (click)="setRating(2)" [class.full]="reservationRating >= 2">&#9733;</span>
+                                <span class="star" (click)="setRating(3)" [class.full]="reservationRating >= 3">&#9733;</span>
+                                <span class="star" (click)="setRating(4)" [class.full]="reservationRating >= 4">&#9733;</span>
+                                <span class="star" (click)="setRating(5)" [class.full]="reservationRating >= 5">&#9733;</span>
+                              </div>
+                        </td>
+                        <td *ngIf="!rezervacija.ocena&&oceni"><button (click)="ostaviOcenu(rezervacija)">Oceni</button></td>
+                    </tr>
+                </table>
+        </div>
+        {{message}}
+    </div>
+    <div class="footer">
+        <br>
+        <button (click)="logout()">Odjavi se</button>
+    </div>
+</body>

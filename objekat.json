@@ -1,0 +1,50 @@
+{
+  "restoran": "Konoba",
+  "kuhinja":[
+	{
+      "idObj": 1,
+      "xkoor": 700,
+      "ykoor": 700,
+      "sirina": 300,
+      "visina": 200  
+    }
+	],
+  "toalet":[
+	{
+      "idObj": 1,
+      "xkoor": 300,
+      "ykoor": 700,
+      "sirina": 300,
+      "visina": 200  
+    }
+	],
+  "stolovi": [
+    {
+      "idObj": 1,
+      "xkoor": 500,
+      "ykoor": 250,
+      "radius": 100,
+      "visina": 250,  
+      "status": "slobodan",
+	"brojLjudi":3
+    },
+    {
+      "idObj": 2,
+      "xkoor": 300,
+      "ykoor": 250,
+      "radius": 250,
+      "visina": 300,
+      "status": "slobodan",
+"brojLjudi":4
+    },{
+      "idObj": 3,
+      "xkoor": 700,
+      "ykoor": 250,
+      "radius": 300,
+      "visina": 300,
+      "status": "slobodan",
+"brojLjudi":5
+    }
+  ],
+  "__v": 0
+}

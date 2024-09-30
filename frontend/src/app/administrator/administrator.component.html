@@ -1,0 +1,435 @@
+<body>
+    <div class="header">
+        <h1>Administrator</h1>
+    </div>
+    <div class="card2">
+        <h4>Svi Konobari</h4>
+        <table>
+            <tr *ngIf="!dodajK">
+                <th>Slika </th>
+                <th>Korisnicko ime</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Pol</th>
+                <th>Mejl</th>
+                <th>Telefon</th>
+                <th>Adresa</th>
+                <th>Restoran</th>
+            </tr>
+            <tr *ngFor="let konobar of aktivniKonobari">
+                <div class="sl"><td><img [src]="konobar.img" height="70px !important" 
+                width="70px !important">
+                <input type="file" (change)="selectFile($event)"*ngIf="promeniK && konobarZaPromenu==konobar" >
+                </td> </div>
+                <td>{{konobar.kor_ime}}</td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.ime}}</output>
+                    <input type="text" [(ngModel)]="nImeK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.prezime}}</output>
+                    <input type="text" [(ngModel)]="nPrezimeK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.pol}}</output>
+                    <input type="text" [(ngModel)]="nPolK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.mejl}}</output>
+                    <input type="text" [(ngModel)]="nMejlK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="number" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.telefon}}</output>
+                    <input type="number" [(ngModel)]="nTelefonK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.adresa}}</output>
+                    <input type="text" [(ngModel)]="nAdresaK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniK || promeniK && konobarZaPromenu!=konobar">{{konobar.restoran}}</output>
+                    <input type="text" [(ngModel)]="nRestoranK" *ngIf="promeniK && konobarZaPromenu==konobar">
+                </td>
+                <td><button (click)="azurirajKonobara(konobar.kor_ime)" *ngIf="!promeniK">Azuriraj</button></td>
+                <td><button (click)="obrisiKonobara(konobar.kor_ime)" *ngIf="!promeniK">Obrisi</button></td>
+                <td><button (click)="sacuvajIzmeneK(konobar.kor_ime)"*ngIf="promeniK">Sacuvaj</button></td>
+            </tr>
+            <tr *ngIf="dodajK">
+                <th>Slika </th>
+                <th>Korisnicko ime</th>
+                <th>Lozinka</th>
+                <th>Potvrda lozinke</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Bezbedonosno Pitanje</th>
+                <th *ngIf="izabranoPitanje">Bezbedonosni Odogovor</th>
+                <th>Pol</th>
+                <th>Mejl</th>
+                <th>Telefon</th>
+                <th>Adresa</th>
+                <th>Restoran</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="file" (change)="selectFile($event)" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dKor_ime" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="password" [(ngModel)]="dLozinka" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="password" [(ngModel)]="dPotvrdaLozinke" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dIme" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dPrezime" *ngIf="dodajK">
+                </td>
+                <td><select [(ngModel)]="izabranoPitanje" *ngIf="dodajK">
+                    <option *ngFor="let pitanje of bezbedonosnaPitanja" option [ngValue]=pitanje>{{pitanje}}</option>
+                    </select>
+                </td>
+                <td *ngIf="izabranoPitanje && dodajK">
+                    <input type="text" name="bezb_odgovor"[(ngModel)]="bezb_odgovor">
+                </td>
+                <td><select [(ngModel)]="dPol" *ngIf="dodajK">
+                    <option option value="M">M</option>
+                    <option option value="Ž">Ž</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dMejl" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="dTelefon" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dAdresa" *ngIf="dodajK">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dRestoran" *ngIf="dodajK">
+                </td>
+                <td><button (click)="dodajKonobara()" *ngIf="!dodajK">Dodaj</button></td>
+                <td><button (click)="sacuvajKonobara()" *ngIf="dodajK">Sacuvaj</button></td>
+                {{message}}
+            </tr>
+        </table>
+<br>
+<h4>Svi Gosti</h4>
+        <table>
+            <tr *ngIf="!dodajG">
+                <th>Slika </th>
+                <th>Korisnicko ime</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Pol</th>
+                <th>Mejl</th>
+                <th>Telefon</th>
+                <th>Adresa</th>
+                <th>Broj kartice</th>
+            </tr>
+            <tr *ngFor="let gost of odobreniGosti">
+                <div class="sl"><td><img [src]="gost.img" height="70px !important" 
+                width="70px !important">
+                <input type="file" (change)="selectFile($event)"*ngIf="promeniG && gostZaPromenu==gost" >
+                </td> </div>
+                <td>{{gost.kor_ime}}</td>
+                <td>
+                    <output type="text" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.ime}}</output>
+                    <input type="text" [(ngModel)]="nImeG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.prezime}}</output>
+                    <input type="text" [(ngModel)]="nPrezimeG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.pol}}</output>
+                    <input type="text" [(ngModel)]="nPolG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.mejl}}</output>
+                    <input type="text" [(ngModel)]="nMejlG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="number" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.telefon}}</output>
+                    <input type="number" [(ngModel)]="nTelefonG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="text" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.adresa}}</output>
+                    <input type="text" [(ngModel)]="nAdresaG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td>
+                    <output type="number" *ngIf="!promeniG || promeniG && gostZaPromenu!=gost">{{gost.broj_kartice}}</output>
+                    <input type="number" [(ngModel)]="nBrojKarticeG" *ngIf="promeniG && gostZaPromenu==gost">
+                </td>
+                <td><button (click)="azurirajGosta(gost.kor_ime)" *ngIf="!promeniG">Azuriraj</button></td>
+                <td><button (click)="obrisiGosta(gost.kor_ime)" *ngIf="!promeniG">Obrisi</button></td>
+                <td><button (click)="sacuvajIzmeneG(gost.kor_ime)"*ngIf="promeniG">Sacuvaj</button></td>
+            </tr>
+            <tr *ngIf="dodajG">
+                <th>Slika </th>
+                <th>Korisnicko ime</th>
+                <th>Lozinka</th>
+                <th>Potvrda lozinke</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Bezbedonosno Pitanje</th>
+                <th *ngIf="izabranoPitanje">Bezbedonosni Odogovor</th>
+                <th>Pol</th>
+                <th>Mejl</th>
+                <th>Telefon</th>
+                <th>Adresa</th>
+                <th>Broj Kartice</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="file" (change)="selectFile($event)" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dKor_ime" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="password" [(ngModel)]="dLozinka" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="password" [(ngModel)]="dPotvrdaLozinke" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dIme" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dPrezime" *ngIf="dodajG">
+                </td>
+                <td><select [(ngModel)]="izabranoPitanje" *ngIf="dodajG">
+                    <option *ngFor="let pitanje of bezbedonosnaPitanja" option [ngValue]=pitanje>{{pitanje}}</option>
+                    </select>
+                </td>
+                <td *ngIf="izabranoPitanje && dodajG">
+                    <input type="text" name="bezb_odgovor"[(ngModel)]="bezb_odgovor">
+                </td>
+                <td><select [(ngModel)]="dPol" *ngIf="dodajG">
+                    <option option value="M">M</option>
+                    <option option value="Ž">Ž</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dMejl" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="dTelefon" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dAdresa" *ngIf="dodajG">
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="dTelefon" *ngIf="dodajG">
+                </td>
+                <td><button (click)="dodajGosta()" *ngIf="!dodajG">Dodaj</button></td>
+                <td><button (click)="sacuvajGosta()" *ngIf="dodajG">Sacuvaj</button></td>
+                {{message}}
+            </tr>
+        </table>
+<br>
+<h4>Svi Restorani</h4>
+        <table>
+            <tr >
+                <th>Naziv </th>
+                <th>Tip</th>
+                <th>Opis</th>
+                <th>Adresa</th>
+                <th>Kontakt</th>
+                <th>Radno vreme</th>
+            </tr>
+            <tr *ngFor="let restoran of sviRestorani">
+                <td>
+                    <output type="text">{{restoran.naziv}}</output>
+                </td>
+                <td>
+                    <output type="text">{{restoran.tip}}</output>
+                </td>
+                <td>
+                    <output type="text">{{restoran.opis}}</output>
+                </td>
+                <td>
+                    <output type="text">{{restoran.adresa}}</output>
+                </td>
+                <td>
+                    <output type="number">{{restoran.kontakt}}</output>
+                </td>
+                <td *ngIf="restoran.radno_vreme!=undefined">
+                    <ul  >
+                        <li>
+                            Ponedeljak: {{restoran.radno_vreme[0].pocetno_vreme }} - {{restoran.radno_vreme[0].krajnje_vreme }}
+                        </li>
+                        <li>
+                            Utorak: {{restoran.radno_vreme[1].pocetno_vreme }} - {{restoran.radno_vreme[1].krajnje_vreme}}
+                        </li>
+                        <li>
+                            Sreda: {{restoran.radno_vreme[2].pocetno_vreme}} - {{restoran.radno_vreme[2].krajnje_vreme }}
+                        </li>
+                        <li>
+                            Cetvrtak: {{restoran.radno_vreme[3].pocetno_vreme}} - {{restoran.radno_vreme[3].krajnje_vreme}}
+                        </li>
+                        <li>
+                            Petak: {{restoran.radno_vreme[4].pocetno_vreme }} - {{restoran.radno_vreme[4].krajnje_vreme}}
+                        </li>
+                        <li>
+                            Subota: {{restoran.radno_vreme[5].pocetno_vreme }} - {{restoran.radno_vreme[5].krajnje_vreme }}
+                        </li>
+                        <li>
+                            Nedelja: {{restoran.radno_vreme[6].pocetno_vreme }} - {{restoran.radno_vreme[6].krajnje_vreme }}
+                        </li>
+                    </ul>                       
+                </td>
+                <td><button (click)="dodajRadnoVreme(restoran)" *ngIf="!dRadnoVreme">Dodaj radno vreme</button></td>
+                <td><button (click)="sacuvajRadnoVreme(restoran)" *ngIf="dRadnoVreme && izabraniRestoran==restoran">Sacuvaj radno vreme</button></td>
+                <td *ngIf="dRadnoVreme  && izabraniRestoran==restoran">
+                    <ul>
+                        <li>Ponedeljak pocetak:<br><input type= "time" [(ngModel)]="dPonedeljakP" *ngIf="dRadnoVreme"></li>
+                        <li>Utorak pocetak:<br><input type= "time" [(ngModel)]="dUtorakP" *ngIf="dRadnoVreme"></li>
+                        <li>Sreda pocetak:<br><input type= "time" [(ngModel)]="dSredaP" *ngIf="dRadnoVreme"></li>
+                        <li>Cetvrtak pocetak:<br><input type= "time" [(ngModel)]="dCetvrtakP" *ngIf="dRadnoVreme"></li>
+                        <li>Petak pocetak:<br><input type= "time" [(ngModel)]="dPetakP" *ngIf="dRadnoVreme"></li>
+                        <li>Subota pocetak:<br><input type= "time" [(ngModel)]="dSubotaP" *ngIf="dRadnoVreme"></li>
+                        <li>Nedelja pocetak:<br><input type= "time" [(ngModel)]="dNedeljaP" *ngIf="dRadnoVreme"></li>
+                    </ul>
+                </td>
+                <td *ngIf="dRadnoVreme && izabraniRestoran==restoran">
+                    <ul>
+                        <li>Ponedeljak kraj:<br><input type= "time" [(ngModel)]="dPonedeljakK" *ngIf="dRadnoVreme"></li>
+                        <li>Utorak kraj:<br><input type= "time" [(ngModel)]="dUtorakK" *ngIf="dRadnoVreme"></li>
+                        <li>Sreda kraj:<br><input type= "time" [(ngModel)]="dSredaK" *ngIf="dRadnoVreme"></li>
+                        <li>Cetvrtak kraj:<br><input type= "time" [(ngModel)]="dCetvrtakK" *ngIf="dRadnoVreme"></li>
+                        <li>Petak kraj:<br><input type= "time" [(ngModel)]="dPetakK" *ngIf="dRadnoVreme"></li>
+                        <li>Subota kraj:<br><input type= "time" [(ngModel)]="dSubotaK" *ngIf="dRadnoVreme"></li>
+                        <li>Nedelja kraj:<br><input type= "time" [(ngModel)]="dNedeljaK" *ngIf="dRadnoVreme && izabraniRestoran==restoran"></li>
+                    </ul>
+                </td>
+                <td>Dodaj json raspored<input type="file" (change)="onFileSelected($event,restoran)"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" [(ngModel)]="dNaziv" *ngIf="dodajR">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dTip" *ngIf="dodajR">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dOpis" *ngIf="dodajR">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="dAdresa" *ngIf="dodajR">
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="dKontakt" *ngIf="dodajR">
+                </td>
+                <td><button (click)="dodajRestoran()" *ngIf="!dodajR">Dodaj</button></td>
+                <td><button (click)="sacuvajRestoran()" *ngIf="dodajR">Sacuvaj</button></td>
+                {{message}}
+            </tr>
+        </table>
+<h4>Zahtev za registraciju gosta</h4>
+<table>
+    <tr>
+        <th>Slika </th>
+        <th>Korisnicko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Mejl</th>
+        <th>Telefon</th>
+        <th>Adresa</th>
+        <th>Broj Kartice</th>
+    </tr>
+    <tr *ngFor="let gost of neodobreniGosti">
+        <div class="sl"><td><img [src]="gost.img" height="70px !important" 
+        width="70px !important"></td> </div>
+        <td>{{gost.kor_ime}}</td>
+        <td>{{gost.ime}}</td>
+        <td>{{gost.prezime}}</td>
+        <td>{{gost.mejl}}</td>
+        <td>{{gost.telefon}}</td>
+        <td>{{gost.adresa}}</td>
+        <td>{{gost.broj_kartice}}</td>
+        <td><button (click)="odobriGosta(gost.kor_ime)">Odobri</button></td>
+        <td><button (click)="odbijGosta(gost.kor_ime,gost.mejl)">Odbij</button></td>
+    </tr>
+</table>
+<br>
+<h4>Blokirani gosti</h4>
+<table>
+    <tr>
+        <th>Slika </th>
+        <th>Korisnicko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Mejl</th>
+        <th>Telefon</th>
+        <th>Adresa</th>
+        <th>Broj Kartice</th>
+    </tr>
+    <tr *ngFor="let gost of blokiraniGosti">
+        <div class="sl"><td><img [src]="gost.img" height="70px !important" 
+        width="70px !important"></td> </div>
+        <td>{{gost.kor_ime}}</td>
+        <td>{{gost.ime}}</td>
+        <td>{{gost.prezime}}</td>
+        <td>{{gost.mejl}}</td>
+        <td>{{gost.telefon}}</td>
+        <td>{{gost.adresa}}</td>
+        <td>{{gost.broj_kartice}}</td>
+        <td><button (click)="odblokirajGosta(gost.kor_ime)">Odblokiraj</button></td>
+    </tr>
+</table>
+<br>
+Dodaj Jelovnik
+<select [(ngModel)]="izabraniJelovnik" >
+    <option option  [ngValue]="restoran" *ngFor="let restoran of sviRestorani">{{restoran.naziv}}</option>
+</select>
+<table>
+    <tr>
+        <th>Slika </th>
+        <th>Naziv</th>
+        <th>Cena</th>
+        <th>Sastojci</th>
+    </tr>
+    <tr *ngFor="let jelo of izabraniJelovnik.jelovnik">
+        <div class="sl"><td><img [src]="jelo.img" height="70px !important" 
+        width="70px !important">
+        </td> </div>
+        <td>{{jelo.naziv}}</td>
+        <td>{{jelo.cena}}</td>
+        <td>{{jelo.sastojci}}</td>
+    </tr>
+    <tr *ngIf="dodajJ">
+        <th>Slika </th>
+        <th>Naziv </th>
+        <th>Cena</th>
+        <th>Sastojci</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="file" (change)="selectFile($event)" *ngIf="dodajJ">
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="dNazivJ" *ngIf="dodajJ">
+        </td>
+        <td>
+            <input type="number" [(ngModel)]="dCena" *ngIf="dodajJ">
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="dSastojci" *ngIf="dodajJ">
+        </td>
+        <td><button (click)="dodajJelo()" *ngIf="!dodajJ">Dodaj</button></td>
+        <td><button (click)="sacuvajJelo(izabraniJelovnik)" *ngIf="dodajJ">Sacuvaj</button></td>
+        {{message}}
+    </tr>
+</table>
+</div>
+<div class="footer">
+    <br>
+    <button (click)="logout()">Odjavi se</button>
+</div>
+</body>

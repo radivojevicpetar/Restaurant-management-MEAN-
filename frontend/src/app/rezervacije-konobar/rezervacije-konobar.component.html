@@ -1,0 +1,77 @@
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li><a routerLink="/konobar">Profil</a></li>
+            <li><a routerLink="/rezervacijeK">Rezervacije</a></li>
+            <li><a routerLink="/dostaveK">Dostave</a></li>  
+            <li><a routerLink="/statistika">Statistika</a></li>
+          </ul>
+    </div>
+<div class="card" >
+    <canvas #canvasEl width="1000" height="700"></canvas>
+</div>
+<div class="card2">
+    <br>
+    <div><h4>Primljene rezervacije</h4>
+        <table>
+            <tr>
+                <th>Gost </th>
+                <th>Vreme</th>
+                <th>Broj ljudi</th>
+                <th>Dodatni zahtevi</th>
+            </tr>
+            <tr *ngFor="let rezervacija of primljeneRezervacije">
+                <td>{{rezervacija.gost}}</td>
+                <td>{{rezervacija.datumVreme}}</td>
+                <td>{{rezervacija.brojLjudi}}</td>
+                <td>{{rezervacija.dodatniZahtevi}}</td>
+                <td>
+                    <button (click)="prihvatiRezervaciju(rezervacija)" *ngIf="!prihvacena && !odbijena ">Prihvati</button>
+                </td>
+                <td><button (click)="odbijRezervaciju(rezervacija)" *ngIf="!prihvacena && !odbijena ">Odbij</button></td>
+                <td *ngIf="prihvacena && izabranaRezervacija==rezervacija">
+                    <select [(ngModel)]="izabraniSto" >
+                        <option option  [ngValue]="sto" *ngFor="let sto of raspored.stolovi">Sto sa brojem ljudi:{{sto.brojLjudi}}</option>
+                    </select>
+                    <button (click)="sacuvajRezervaciju(rezervacija)">Posalji</button>
+                </td>
+                <td *ngIf="odbijena && izabranaRezervacija==rezervacija">
+                    <input type="text" [(ngModel)]="komentar">
+                    <button (click)="sacuvajOdbijenicu(rezervacija)">Posalji</button>
+                </td>
+            </tr>
+            
+        </table>
+        </div>
+    <br>
+    <div><h4>Prihvacene rezervacije</h4>
+        <table>
+            <tr>
+                <th>Gost </th>
+                <th>Vreme</th>
+                <th>Broj ljudi</th>
+                <th>Dodatni zahtevi</th>
+            </tr>
+            <tr *ngFor="let rezervacija of prihvaceneRezervacije">
+                <td>{{rezervacija.gost}}</td>
+                <td>{{rezervacija.datumVreme}}</td>
+                <td>{{rezervacija.brojLjudi}}</td>
+                <td>{{rezervacija.dodatniZahtevi}}</td>
+                <td>
+                    <button (click)="pojavioSe(rezervacija)" *ngIf="!pojavio && !nijePojavio ">Cekiraj pojavljivanje</button>
+                </td>
+                <td><button (click)="nijeSePojavio(rezervacija)" *ngIf="!pojavio && !nijePojavio ">Cekiraj nepojavljivanje</button></td>
+                <td *ngIf="pojavio && izabranaRezervacija.idRez==rezervacija.idRez">
+                    <button (click)="produziBoravak(rezervacija)">Produzi boravak</button>
+                </td>
+            </tr>
+        </table>
+        {{message}}
+        </div>
+    </div>
+<div class="footer">
+    <a routerLink="/promenaLozinke">Promeni lozinku</a>
+    <br>
+    <button (click)="logout()">Odjavi se</button>
+</div>
+</body>

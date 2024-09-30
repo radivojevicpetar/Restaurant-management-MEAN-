@@ -1,0 +1,98 @@
+<body>
+    <div class="header">
+        
+    </div>
+    <div class="card2">
+<h2>Registracija</h2>
+<table>
+    <div>
+    <tr>
+        <td>Korisnicko ime:</td>
+        <td>
+            <input type="text" name="kor_ime" [(ngModel)]="kor_ime">
+        </td>        
+    </tr>
+    <tr>
+        <td>Lozinka:</td>
+        <td>
+            <input type="password" name="lozinka" [(ngModel)]="lozinka">
+        </td>        
+    </tr>
+    <tr>
+        <td>Potvrda Lozinke:</td>
+        <td>
+            <input type="password" name="potvrdaLozinka" [(ngModel)]="potvrdaLozinke">
+        </td>        
+    </tr>
+    <tr>
+        <td>Bezbedonosno pitanje</td>
+        <td><select [(ngModel)]="izabranoPitanje">
+            <option *ngFor="let pitanje of bezbedonosnaPitanja" option [ngValue]=pitanje>{{pitanje}}</option>
+            </select></td>
+        <td *ngIf="izabranoPitanje">
+            <input type="text" name="bezb_odgovor"[(ngModel)]="bezb_odgovor">
+        </td>
+    </tr>
+    <tr>
+        <td>Ime:</td>
+        <td>
+            <input type="text" name="ime" [(ngModel)]="ime">
+        </td>        
+    </tr>
+    <tr>
+        <td>Prezime:</td>
+        <td>
+            <input type="text" name="prezime" [(ngModel)]="prezime">
+        </td>        
+    </tr>
+    <tr>
+        <td>Pol</td>
+        <td><select [(ngModel)]="izabraniPol">
+            <option option value="M">M</option>
+            <option option value="Ž">Ž</option>
+            </select></td>
+    </tr>
+    <tr>
+        <td>Mejl:</td>
+        <td>
+            <input type="text" name="mejl" [(ngModel)]="mejl">
+        </td>        
+    </tr>
+    <tr>
+        <td>Adresa:</td>
+        <td>
+            <input type="text" name="adresa" [(ngModel)]="adresa">
+        </td>        
+    </tr>
+    <tr>
+        <td>Telefon:</td>
+        <td>
+            <input type="number" name="telefon" [(ngModel)]="telefon">
+        </td>        
+    </tr>
+    <tr>
+        <td>Broj kartice:</td>
+        <td>
+            <input type="number" name="broj_kartice" [(ngModel)]="broj_kartice">
+        </td>        
+    </tr>
+    <tr> 
+        <td colspan="2">
+            <button (click)="registracija()">Registruj se</button>
+        </td>        
+    </tr>
+    <tr>
+        Unesi sliku za korisnika:
+        <input type="file" (change)="selectFile($event)">
+    </tr>
+    </div>
+    
+</table>
+{{message}}
+</div>
+    
+<div class="footer">
+    <br>
+    <button (click)="nazad()">Vrati se na login</button>
+</div>
+</body>

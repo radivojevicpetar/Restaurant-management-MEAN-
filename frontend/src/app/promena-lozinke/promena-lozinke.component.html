@@ -1,0 +1,95 @@
+<body>
+    <div class="header">
+      <h1>Promena lozink</h1>
+    </div>
+    <div class="card2">
+<table *ngIf="znamStaruLozinku">
+    <tr>
+        <td>Korisnicko ime</td>
+        <td>
+            <input type='string' name='kor_ime' [(ngModel)]='kor_ime' >
+        </td>
+    </tr>
+    <tr>
+        <td>Stara lozinka:</td>
+        <td>
+            <input type='password' name='staraLozinka' [(ngModel)]='staraLozinka' >
+        </td>
+    </tr>
+    <tr>
+        <td>Nova lozinka:</td>
+        <td>
+            <input type='password' name='novaLozinka' [(ngModel)]='novaLozinka' >
+        </td>
+    </tr>
+    <tr>
+        <td>Nova lozinka:</td>
+        <td>
+            <input type='password' name='novaLozinkaProvera' [(ngModel)]='novaLozinkaProvera' >
+        </td>
+    </tr>
+    <tr>
+        <h3>Izaberi Tip</h3>
+        <select [(ngModel)]="izabraniTip">
+            <option option value="gost">Gost</option>
+            <option option value="konobar">Konobar</option>
+         </select>  
+    </tr>
+    <tr>
+        <td colspan='2'>
+            <button (click)="promeni()">Promeni Lozinku</button>
+        </td>
+    </tr>
+{{message}}
+</table>
+<table *ngIf="!znamStaruLozinku">
+    <tr>
+        <td>Korisnicko ime</td>
+        <td>
+            <input type='string' name='kor_ime' [(ngModel)]='kor_ime' >
+        </td>
+    </tr>
+    <tr>
+        <td>Bezbedonosno pitanje</td>
+        <td><select [(ngModel)]="izabranoPitanje">
+            <option *ngFor="let pitanje of bezbedonosnaPitanja" option [ngValue]=pitanje>{{pitanje}}</option>
+            </select></td>
+        <td *ngIf="izabranoPitanje">
+            <input type="text" name="bezb_odgovor"[(ngModel)]="bezb_odgovor">
+        </td>
+        <td>
+            <button (click)="proveriPitanje()">Potvrdi</button>
+        </td>
+    </tr>
+    <tr *ngIf="potvrdanOdgovor">
+        <td>Nova lozinka:</td>
+        <td>
+            <input type='password' name='novaLozinka' [(ngModel)]='novaLozinka' >
+        </td>
+    </tr>
+    <tr *ngIf="potvrdanOdgovor">
+        <td>Potvrdi novu lozinku:</td>
+        <td>
+            <input type='password' name='novaLozinkaProvera' [(ngModel)]='novaLozinkaProvera' >
+        </td>
+    </tr>
+    <tr>
+        <h3>Izaberi Tip</h3>
+        <select [(ngModel)]="izabraniTip">
+            <option option value="gost">Gost</option>
+            <option option value="konobar">Konobar</option>
+         </select>  
+    </tr>
+    <tr>
+        <td colspan='2'>
+            <button (click)="promeni2()">Promeni Lozinku</button>
+        </td>
+    </tr>
+{{message}}
+</table>
+<button (click)="neZnam()" *ngIf="znamStaruLozinku">Ne znam staru lozinku</button>
+    </div>
+<div class="footer">
+    <button (click)="nazad()">Vrati se na login</button>
+    </div>
+</body>
